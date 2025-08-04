@@ -1,0 +1,65 @@
+Table Customers {
+  CustomerID int [pk]
+  CustomerName varchar
+  ContactName varchar
+  Address varchar
+  City varchar
+  PostalCode varchar
+  Country varchar
+}
+
+Table Employees {
+  EmployeeID int [pk]
+  LastName varchar
+  FirstName varchar
+  BirthDate date
+  Photo varchar
+  Notes text
+}
+
+Table Shippers {
+  ShipperID int [pk]
+  ShipperName varchar
+  Phone varchar
+}
+
+Table Suppliers {
+  SupplierID int [pk]
+  SupplierName varchar
+  ContactName varchar
+  Address varchar
+  City varchar
+  PostalCode varchar
+  Country varchar
+  Phone varchar
+}
+
+Table Categories {
+  CategoryID int [pk]
+  CategoryName varchar
+  Description text
+}
+
+Table Products {
+  ProductID int [pk]
+  ProductName varchar
+  SupplierID int [ref: > Suppliers.SupplierID]
+  CategoryID int [ref: > Categories.CategoryID]
+  Unit varchar
+  Price decimal
+}
+
+Table Orders {
+  OrderID int [pk]
+  CustomerID int [ref: > Customers.CustomerID]
+  EmployeeID int [ref: > Employees.EmployeeID]
+  OrderDate date
+  ShipperID int [ref: > Shippers.ShipperID]
+}
+
+Table OrderDetails {
+  OrderDetailID int [pk]
+  OrderID int [ref: > Orders.OrderID]
+  ProductID int [ref: > Products.ProductID]
+  Quantity int
+}
